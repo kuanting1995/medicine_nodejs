@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>個人檔案頁面</title>
+    <style>
+       body {
+            padding: 50px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+  </head>
+  <body>
+    <ul>
+        <h1>成功登入!</h1>
+        <li><img src="<%= user.thumbnail %>"></li>
+        <li><strong>ID:</strong> <%= user.googleID %></li>
+        <li><strong>Full Name:</strong> <%= user.name %></li>
+        <li><strong>Email:</strong> <%= user.email %></li>
+        <li><a href="/">取消登入</a></li>
+        <h5><span id="count">3</span>秒後自動跳轉...</h5>
+    </ul>
+</body>
+<%- include ("partials/script") %>
+<script>
+  let iid = setInterval(() => {
+      count.innerHTML = parseInt(count, innerHTML) - 1;
+      if (parseInt(count.innerHTML) < 1) {
+          clearInterval(iid)
+      }
+  }, 1000)
+  setTimeout(() => {
+      location.href = '/profile';
+  }, 3000)
+</script>
+
+</html>
